@@ -13,7 +13,7 @@ Account and User Management
 Invited Falkonry Account Setup
 -------------------------------
 
-Only the user who receives a personalized Falkonry email invite from Falkonry instance can setup an account on Falkonry.  Do not forward the Falkonry invitation email to others as it will not work for the other recipients.  Once you setup your Falkonry account, as the account administrator, you can invite other team members as users into your Falkonry account.  If necessary, you can also assign other team members to be the administrators of your account.
+Only the user who receives a personalized email invite from Falkonry can setup an account on Falkonry. Do not forward the Falkonry invitation email to others as it will not work for the other recipients. Once you setup your Falkonry account you will assigned an account administrator role, which allowsyou to invite other team members as users into your Falkonry account. If necessary, you can also assign other team members to be the administrators of your account.
 Instructions to invite other team members to your Falkonry account : `Inviting team members <http://help.falkonry.com/en/latest/using/accounts.html>`_
 Falkonry will present the following screen during signup.
 
@@ -22,7 +22,9 @@ Falkonry Cloud instance:
 
 .. image:: images/google_login.png
 
+When using the invitation link (from your email), this form will have you email address pre-populated. All you need to do is to set your password. You must remember the password you set on this screen.
 
+ 
 Falkonry Local instance:
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -35,17 +37,13 @@ Once you select *Login with Password* local Falkonry instance will display:
 
 
 During signup you will be asked for the password only once.  Please remember this password for your future logins into Falkonry.  If you use any other email id than where you received Falkonry invite, your signup will not work.
-If Falkonry is not responding after you selected “YES” on *Master Services Agreement*:
-
-.. image:: images/MEA.png
-
 
 In the browser, type the Falkonry service URL supplied to you and signup using your email and a password.  If you still can’t signup, contact Falkonry customer support.
 
 1. You did not receive the email even when the invitation is sent:
 Use Falkonry service URL followed by “/signup” in your browser and signup using the email used in the Falkonry invite and a password.
 
-2. If you still can’t signup, or do not have Falkonry service URL, for a local Falkonry instance contact your Falkonry system administrator.
+2. If you still can’t signup, or do not have Falkonry service URL, for a local Falkonry instance contact your local Falkonry system administrator.
 For Falkonry cloud instance contact Falkonry customer support.
 
 
@@ -121,7 +119,7 @@ If your user account is on your own Falkonry On-Prem installation, only your ins
 On Falkonry’s Cloud Instances
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. image:: images/google_login.png
+.. image:: images/google_login2.png
 
 
 1. On the login page click “Don’t remember your password?” link.

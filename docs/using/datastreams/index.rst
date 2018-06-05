@@ -35,6 +35,8 @@ Selecting the **Model** button opens the Model drawer. Models can be created and
 
 From here you can click the 'New Model' button to start Model creation.
 
+.. _modellearning:
+
 Model Learning
 ---------------
 
@@ -87,11 +89,27 @@ When set to **Minimum Generalization** the engine is restricted to what it sees 
 When set to **Maximum Generalization** the engine only looks at the general shape of the time series. It is less sensitive to temporal shift or even small number of peaks and troughs in the general pattern. With this approach, one can achieve higher TPR. However, the FPR might be high as well.
 
 As the final step, the user may decide to create an **Unsupervised**, **Semi-supervised**, or **Fully-supervised** model. This can be achieved by adding **Facts**. Facts uploaded can be filtered based on *Entities*, prior *Models*, *Keywords* associated with facts, *Conditions* and *Time range*.
+gallery
 
 .. image:: images/createmodel4.png
 
-Upon completion of facts selection, clicking the *Start* button should start the model creation process.
+Upon completion of facts selection, clicking the *NEXT* button should bring the user to the final step of the model creation which is selecting entities and time range on which to apply the model. 
+This allows a user to have the model applied to a user specified range (may include validation range outside of model learning range) immediately after model creation. A user can always go back and trigger model apply on a different time range at a later point in time. 
 
+.. image:: images/createmodel5.png
+
+At this point Falkonry has received the following guidance to start building the model:
+
+  - Learning Time Range
+  - List of Entities for Learning
+  - List of Signals for Learning
+  - List of Facts for Learning
+  - Model Configuration Settings
+  - Model Apply Time Range and Entities
+
+To start the model creation process, hit **START**.
+
+.. _factfilters:
 
 Adding Facts & Using Facts When Learning a Model
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -100,6 +118,7 @@ A Fact is a known condition for a particular episode of time for a particular As
 Facts are means by which Falkonry can learn to recognize semantically meaningful names for conditions that have previously occurred.
 
 Facts can be entered into Falkonry in any one of the following ways:
+
   - Integration agents/ connectors for TSDB historians
   - Manually by selecting segments from the Falkonry LRS
   - Any of the Falkonry ADKs (C#, Java, Python)
@@ -112,7 +131,6 @@ Opening the facts drawer for a new Assessment should present a drawer with no av
 
 A CSV/JSON file (see :doc:`facts`) can either be selected from or simply dropped into the "Select or Drop CSV or JSON file ...". A window asking the user to select specific identifiers for Start time, End time, Batch Identifier (for Batch datastreams only), Entity, Value and Keywords (optional) should present itself before the facts can be populated within Falkonry LRS.
 
-.. _fact_filters_label:
 .. image:: images/facts2.png
 
 Once facts are available in this drawer, specific filters can be applied to narrow down the set of facts of interest. These settings can be saved as a **Filter View** by clicking on **Add new fact filter** in the **Filters** dropdown.
@@ -187,7 +205,7 @@ The timeline view consists of several cards, each associated with a particular *
 - M[n] displays the assessment output based on Model "n"
 - F[n] displays the facts used for creation of model M[n]
 - Each signal (selected for display from Signals panel) associated with the Entity
-- Fact filters created in (:ref:`fact_filters_label <Fact Filters>`)
+- Fact snapshots created using **Fact Filters**, see :ref:`factfilters`
 - Model training ranges (displayed as a red line between M[n] and F[n])
 
 .. image:: images/timeline1.png
@@ -204,6 +222,36 @@ Zooming in into this segment will resolve the clustered display of conditions as
 
 .. image:: images/timeline4.png
 
+
+
+Selecting Episodes
+-------------------
+
+Once assessment results are available on the timeline view, a user may want to select specific episodes/ segments by clicking and dragging the mouse over of the assessment output:
+  1. Zooming in to evaluate and observe specific events with more granularity
+  2. Adding facts over specifc time ranges
+  3. Deleting facts over specific time ranges
+  4. Adding episodes to the Episode Gallery for further inspection and analysis of assessment results (more on this :ref:`explanations`)
+
+.. image:: images/episode_selector.png 
+
+A user can select to be in one of 4 modes to be able to select segments for performing the above tasks. The default selection is for being able to view, pan and zoom into the assessment output.
+
+An example of adding episodes to the Episode Gallery is discussed (:ref:`explanations`)
+
+To walk through an example of adding Facts on the timeline view, simply select the button "Add a fact" to choose to be in Fact addition mode.
+
+.. image:: images/fact_episode_selector.png 
+
+Next, click and drag the mouse pointer over the time range segment of interest on the assessment output to highligh the segment. A dialog box presents itself. Add the condition wanrning and give it a Keyword (optional) to help you tag or identify this fact.
+.. image:: images/add_fact.png 
+
+Here, we are trying to confirm a segment to be of condition type "warning". When you create a new fact view/ snapshot with the Keyword specified when creating the fact, the manually added fact is presented as shown.
+
+.. image:: images/fact_added.png 
+
+
+.. _selectingtimerange:
 
 Selecting time ranges on timeline view 
 -----------------------------------------
@@ -224,7 +272,34 @@ Upon confirming the new time range, the user now also have the option to reset t
 .. image:: images/time3.png
 
 
+Selecting time ranges and entities for model apply
+----------------------------------------------------
 
+Section (:ref:`modellearning`) discusses how the model can be applied for a specific set of entities across a given time range during model creation time.
+
+Any model can be applied across a previously selected time range (:ref:`selectingtimerange`) on any set of entities post model creation.
+
+.. |gray_gear| image:: images/gray_gear.png
+.. |orange_gear| image:: images/orange_gear.png
+
+In the image below, a gear icon in "orange" color |orange_gear| suggests that the assessment output for model M[8] does not exist while the "dark gray" gear icon |gray_gear| suggests that the assessment output for model M[3] exists as displayed in the corresponding swim lane.
+To generate assessment output for M[8] or to apply the model for the given time range for entity *machine 1* the user can click on the orange gear **Apply model** icon. 
+
+.. image:: images/model_apply1.png
+
+On clicking the gear icon a form (as shown below) the user is asked to confirm if he / she would like to apply model **M[8]** for given time range (range selected on timeline view) on **machine 1** for 
+Clicking on **Apply** initiates the model apply process.
+
+.. image:: images/model_apply2.png
+
+If the user would rather initiate model apply on some combinations of models and entities, selecting the *Show More* option should reveal a list of models and entities. Checking the boxes for some selection of models and entities allows the user to quickly apply these models on the selected entities for the time range displayed on the window.
+Note: This selection is a cross-product of models and entities each producing an assessment output on the timeline view.
+
+.. image:: images/model_apply3.png
+
+Once the model apply completes, the corresponding assessment output is displayed on the timeline view and the gear icon changes to dark gray.
+
+Initiating model apply from a dark gray gear icon (model apply exists) simply checks to see if new data exists for the given time range and accordingly recomputes the assessment output. Else it simply retains the current assessment.  
 
 Inspecting and analyzing assessment episodes
 =============================================
@@ -239,22 +314,19 @@ Specific episodes or segments of the assessment may be selected to be posted int
 - Signal window sizes overlaid on top of the signal plot (in case of Sliding windows)
 - In case of Batch windows, the entire batch segment is selected for display determined by the size of the fixed/ batch window
 - Batch identifier of the selected batch for Batch datastreams
-- Understanding correlations between assessment outcome and the input signals (more on this (:ref:`explanations_label <Explanation Scores>`))
+- Understanding correlations between assessment outcome and the input signals (more on this :ref:`explanations`)
 
 
+.. _explanations:
 
 Episode Gallery
 ----------------
 
-.. explanations_label:
-
-An assessment episode can be selected from the timeline view by clicking on the **Select Episode** button that is activated upon hovering the mouse over each card on the timeline view
+An assessment episode can be selected from the timeline view by selecting to be in the **Select Episode** mode by clicking on the "Save to Gallery" button as shown on the timeline view
 
 .. image:: images/gallery1.png
 
-Select on the **Save to Gallery** and select a segment from the timeline view by dragging the mouse over the timeline
-
-.. image:: images/gallery2.png
+Select a segment from the timeline view by dragging the mouse over the timeline
 
 In the dialog box that opens up, add a description (optional) and select an **Episode View** to save the segment into. An Episode View is a gallery of selected episodes that a user may have collected for simultaneous investigation.
 Multiple episode views can be created by each user.

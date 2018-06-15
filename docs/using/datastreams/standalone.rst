@@ -33,8 +33,17 @@ Your timestamp data can be specified using one of the following formats:
 - As a Unix-style long integer encoded as the number of milliseconds since Jan 1, 1970.
 - 12/19/2014 11:22:00 or ``MM/DD/YYYY HH:mm:ss``
 - 2015-02-03 12:55:03 or ``YYYY-MM-DD HH:mm:ss``
-- Any timestamp format that can be described using `Java SimpleDateFormat 
-  <https://docs.oracle.com/javase/7/docs/api/java/text/SimpleDateFormat.html>`_
+- When using "Other" to manually specify a time format:
+ - Always use ``Y`` for Year.
+ - Always use ``M`` for Month.
+ - Always use ``D`` for Date.
+ - Always use ``H`` for Hour.
+ - Always use ``m`` for Minutes.
+ - Always use ``s`` for Seconds.
+ - Always use ``.SSS`` for milliseconds.
+ - Always use ``.SSSSSS`` for Microseconds.
+- DO NOT use Comma ``,`` as a time format delimiter.
+
 
 When supplying facts data, you must also supply a second time column called end. 
 This column is used to mark the end of the interval for which the record provides values.

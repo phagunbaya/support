@@ -568,17 +568,6 @@ Infrastructure and Deployment
 
 **7. What are minimum requirements for a Falkonry LRS Private Environment deployment?**
 
-   Minimum Requirements:
-
-    +--------------------------+----------------------+
-    |  Compute                 |    16 CPU cores      |
-    +--------------------------+----------------------+
-    |  Memory (RAM)            |    64 GB             |
-    +--------------------------+----------------------+
-    |  Storage                 |    128GB disk        |
-    +--------------------------+----------------------+
-
-   This configuration would support a quanta of Falkonry compute which would constitute a single model build with 15 signals, 10 entities and 100K datapoints.
    To get specific environment requirements for your needs please reach out to Falkonry at support[at]falkonry[dot]com
 
 

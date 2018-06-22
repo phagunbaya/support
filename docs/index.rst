@@ -9,4 +9,3 @@
    faq/index
    pi_agent/index
    adk
-   Tutorial/index
